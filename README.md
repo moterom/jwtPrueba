@@ -1,5 +1,5 @@
 # jwtPrueba
-Testing JsonWebToken validation in NodeJS
+Probando JsonWebToken validation en NodeJS
 
 
 le asignamos a un usuario creado un Token con la funcion jwt.sign
