@@ -1,10 +1,14 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
+const {checkApiKey} = require('./middlewares/auth.handler')
+
+
 
 const app = express();
 
 
-app.get("/api", (req, res)=>{
+
+app.get("/api", checkApiKey, (req, res)=>{
     res.send("NodeJS JWT");
 
 })
@@ -41,6 +45,7 @@ app.post("/api/posts", verifyToken, (req, res)=>{
 })
 
 
+
 //Authorization: Bearer <token> , funcion para verificar el token
 function verifyToken(req, res, next){
   const bearerHeader = req.headers['authorization']
@@ -52,6 +57,10 @@ function verifyToken(req, res, next){
       res.sendStatus(403);
   }
 }
+
+
+  
+
 
 app.listen(3000, function(){
     console.log("Node js running");
